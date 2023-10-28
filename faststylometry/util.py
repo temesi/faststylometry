@@ -17,7 +17,7 @@ def load_corpus_from_folder(folder: str, pattern: str = None) -> Corpus:
     corpus = Corpus()
     for root, _, files in os.walk(folder):
         for filename in files:
-            if pattern is not None and not pattern in filename:
+            if pattern is not None and pattern not in filename:
                 continue
             if filename.endswith(".txt") and "_" in filename:
                 with open(os.path.join(root, filename), "r", encoding="utf-8") as f:
