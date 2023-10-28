@@ -150,11 +150,12 @@ def calculate_burrows_delta(train_corpus: Corpus, test_corpus: Corpus, vocab_siz
 
     calculate_difference_from_train_corpus(test_corpus, train_corpus)
 
-    deltas = {}
-    for test_author_idx in range(len(test_corpus.df_author_z_scores)):
-        deltas[test_corpus.df_author_z_scores.index[test_author_idx]] = test_corpus.df_difference[
-            test_author_idx].abs().mean(axis=1)
-
-    df_delta = pd.concat(deltas, axis=1)
-
-    return df_delta
+    deltas = {
+        test_corpus.df_author_z_scores.index[
+            test_author_idx
+        ]: test_corpus.df_difference[test_author_idx]
+        .abs()
+        .mean(axis=1)
+        for test_author_idx in range(len(test_corpus.df_author_z_scores))
+    }
+    return pd.concat(deltas, axis=1)

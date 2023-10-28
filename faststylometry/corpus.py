@@ -56,7 +56,7 @@ class Corpus:
                 segment_tokens = self.tokens[author_id][
                                  segment_start:min(segment_start + segment_length, len(self.tokens[author_id]))]
                 new_authors.append(self.authors[author_id])
-                new_books.append(self.books[author_id] + "_" + str(ctr))
+                new_books.append(f"{self.books[author_id]}_{str(ctr)}")
                 new_tokens.append(segment_tokens)
 
         return Corpus(new_authors, new_books, new_tokens)

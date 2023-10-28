@@ -47,6 +47,4 @@ def tokenise_remove_pronouns_en(text: str) -> list:
     """
     tokens = [tok for tok in nltk.word_tokenize(text.lower()) if is_alpha_pattern.match(tok)]
 
-    tokens_without_stopwords = [tok for tok in tokens if tok not in stopwords]
-
-    return tokens_without_stopwords
+    return [tok for tok in tokens if tok not in stopwords]
